@@ -50,6 +50,6 @@ describe(`Main`, () => {
       title.simulate(`click`);
     });
 
-    expect(onMovieCardClick).toHaveBeenCalledTimes(20);
+    expect(onMovieCardClick).toHaveBeenCalledTimes(movieTitles.length);
   });
 });
