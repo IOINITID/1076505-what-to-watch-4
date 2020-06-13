@@ -37,19 +37,19 @@ Enzyme.configure({
 });
 
 describe(`Main`, () => {
-  it(`Click on header should be done`, () => {
+  it(`Click on header of movie card should be done`, () => {
     const onMovieCardClick = jest.fn();
 
     const main = shallow(
         <Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={onMovieCardClick}/>
     );
 
-    const movieCardTitles = main.find(`h3.small-movie-card__title`);
+    const movieCardHeaders = main.find(`h3.small-movie-card__title`);
 
-    movieCardTitles.forEach((title) => {
-      title.simulate(`click`);
+    movieCardHeaders.forEach((header) => {
+      header.simulate(`click`);
     });
 
-    expect(onMovieCardClick).toHaveBeenCalledTimes(movieCardTitles.length);
+    expect(onMovieCardClick).toHaveBeenCalledTimes(movieCardHeaders.length);
   });
 });
