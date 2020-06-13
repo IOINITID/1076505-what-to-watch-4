@@ -32,7 +32,7 @@ const movieTitles = [
 ];
 
 it(`Render App`, () => {
-  const tree = rerender.create(<App movieData={movieData} movieTitles={movieTitles}/>).toJSON();
+  const tree = rerender.create(<App movieData={movieData} movieTitles={movieTitles} onMovieCardClick={() => {}}/>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

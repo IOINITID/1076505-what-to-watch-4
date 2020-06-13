@@ -1,5 +1,6 @@
 import React from 'react';
-import rerender from 'react-test-renderer';
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Main from './main.jsx';
 
 const movieData = {
@@ -31,8 +32,24 @@ const movieTitles = [
   `Midnight Special`
 ];
 
-it(`Main component should render correctly`, () => {
-  const tree = rerender.create(<Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={() => {}}/>).toJSON();
+Enzyme.configure({
+  adapter: new Adapter()
+});
 
-  expect(tree).toMatchSnapshot();
+describe(`Main`, () => {
+  it(`Click on header should be done`, () => {
+    const onMovieCardClick = jest.fn();
+
+    const main = shallow(
+        <Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={onMovieCardClick}/>
+    );
+
+    const movieCardTitles = main.find(`h3.small-movie-card__title`);
+
+    movieCardTitles.forEach((title) => {
+      title.simulate(`click`);
+    });
+
+    expect(onMovieCardClick).toHaveBeenCalledTimes(20);
+  });
 });
