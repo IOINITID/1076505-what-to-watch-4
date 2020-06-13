@@ -19,6 +19,7 @@ App.propTypes = {
     releaseDate: PropTypes.string.isRequired
   }).isRequired,
   movieTitles: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onMovieCardClick: PropTypes.func.isRequired
 };
 
 export default App;
