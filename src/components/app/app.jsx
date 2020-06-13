@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 
-const onMovieCardClickHandler = () => {};
-
 const App = (props) => {
-  const {movieData, movieTitles} = props;
+  const {movieData, movieTitles, onMovieCardClick} = props;
 
   return (
-    <Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={onMovieCardClickHandler}/>
+    <Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={onMovieCardClick}/>
   );
 };
 
