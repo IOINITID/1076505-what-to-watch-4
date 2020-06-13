@@ -31,11 +31,9 @@ const movieTitles = [
   `Midnight Special`
 ];
 
-const onMovieCardClick = () => {};
-
 describe(`Main`, () => {
   it(`Main component should render correctly`, () => {
-    const tree = rerender.create(<Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={onMovieCardClick}/>).toJSON();
+    const tree = rerender.create(<Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={() => {}}/>).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

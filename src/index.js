@@ -31,6 +31,4 @@ const movieTitles = [
   `Midnight Special`
 ];
 
-const onMovieCardClick = () => {};
-
-ReactDOM.render(<App movieData={movieData} movieTitles={movieTitles} onMovieCardClick={onMovieCardClick}/>, document.querySelector(`#root`));
+ReactDOM.render(<App movieData={movieData} movieTitles={movieTitles}/>, document.querySelector(`#root`));
