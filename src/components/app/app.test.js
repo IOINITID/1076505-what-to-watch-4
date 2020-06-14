@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app/app.jsx';
+import rerender from 'react-test-renderer';
+import App from './app.jsx';
 
 const movieData = {
   title: `The Grand Budapest Hotel`,
@@ -31,4 +31,10 @@ const movieTitles = [
   `Midnight Special`
 ];
 
-ReactDOM.render(<App movieData={movieData} movieTitles={movieTitles}/>, document.querySelector(`#root`));
+describe(`App`, () => {
+  it(`App component should render correctly`, () => {
+    const tree = rerender.create(<App movieData={movieData} movieTitles={movieTitles} onMovieCardClick={() => {}}/>).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+});

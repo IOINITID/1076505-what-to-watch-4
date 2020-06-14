@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Main = (props) => {
-  const {movieData: {title, genre, releaseDate}, movieTitles} = props;
+  const {movieData: {title, genre, releaseDate}, movieTitles, onMovieCardClick} = props;
 
   const getMoviesCard = () => {
     return movieTitles.map((movieTitle, index) => {
@@ -11,7 +11,7 @@ const Main = (props) => {
           <div className="small-movie-card__image">
             <img src="img/revenant.jpg" alt="Revenant" width="280" height="175" />
           </div>
-          <h3 className="small-movie-card__title">
+          <h3 className="small-movie-card__title" onClick={onMovieCardClick}>
             <a className="small-movie-card__link" href="movie-page.html">{movieTitle}</a>
           </h3>
         </article>
@@ -147,6 +147,7 @@ Main.propTypes = {
     releaseDate: PropTypes.string.isRequired
   }).isRequired,
   movieTitles: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onMovieCardClick: PropTypes.func.isRequired
 };
 
 export default Main;
