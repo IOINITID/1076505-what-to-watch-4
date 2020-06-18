@@ -1,14 +1,4 @@
-import React from 'react';
-import rerender from 'react-test-renderer';
-import App from './app.jsx';
-
-const movieData = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseDate: `2014`,
-};
-
-const films = [
+export default [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
@@ -42,11 +32,3 @@ const films = [
     image: `img/johnny-english.jpg`
   },
 ];
-
-describe(`App`, () => {
-  it(`App component should render correctly`, () => {
-    const tree = rerender.create(<App movieData={movieData} films={films} />).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-});
