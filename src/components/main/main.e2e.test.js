@@ -9,27 +9,39 @@ const movieData = {
   releaseDate: `2014`,
 };
 
-const movieTitles = [
-  `Fantastic Beasts: The Crimes of Grindelwald`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
-  `We need to talk about Kevin`,
-  `What We Do in the Shadows`,
-  `Revenant`,
-  `Johnny English`,
-  `Shutter Island`,
-  `Pulp Fiction`,
-  `No Country for Old Men`,
-  `Snatch`,
-  `Moonrise Kingdom`,
-  `Seven Years in Tibet`,
-  `Midnight Special`,
-  `War of the Worlds`,
-  `Dardjeeling Limited`,
-  `Orlando`,
-  `Mindhunter`,
-  `Midnight Special`
+const films = [
+  {
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
+  },
+  {
+    title: `Bohemian Rhapsody`,
+    image: `img/bohemian-rhapsody.jpg`
+  },
+  {
+    title: `Macbeth`,
+    image: `img/macbeth.jpg`
+  },
+  {
+    title: `Aviator`,
+    image: `img/aviator.jpg`
+  },
+  {
+    title: `We need to talk about Kevin`,
+    image: `img/we-need-to-talk-about-kevin.jpg`
+  },
+  {
+    title: `What We Do in the Shadows`,
+    image: `img/what-we-do-in-the-shadows.jpg`
+  },
+  {
+    title: `Revenant`,
+    image: `img/revenant.jpg`
+  },
+  {
+    title: `Johnny English`,
+    image: `img/johnny-english.jpg`
+  },
 ];
 
 Enzyme.configure({
@@ -38,10 +50,10 @@ Enzyme.configure({
 
 describe(`Main`, () => {
   it(`Click on header of movie card should be done`, () => {
-    const onMovieCardClick = jest.fn();
+    const handlerMovieCardClick = jest.fn();
 
     const main = mount(
-        <Main movieData={movieData} movieTitles={movieTitles} onMovieCardClick={onMovieCardClick}/>
+        <Main movieData={movieData} films={films} onMovieCardClick={handlerMovieCardClick}/>
     );
 
     const movieCardLinks = main.find(`a.small-movie-card__link`);
@@ -50,6 +62,6 @@ describe(`Main`, () => {
       link.simulate(`click`);
     });
 
-    expect(onMovieCardClick).toHaveBeenCalledTimes(movieCardLinks.length);
+    expect(handlerMovieCardClick).toHaveBeenCalledTimes(movieCardLinks.length);
   });
 });
