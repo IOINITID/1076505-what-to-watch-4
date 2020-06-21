@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import MovieDetails from '../movie-details/movie-details.jsx';
+import film from '../../mocks/film.js';
 
 const handlerMovieCardClick = () => {};
 
@@ -16,7 +17,7 @@ const App = (props) => {
           <Main movieData={movieData} films={films} onMovieCardClick={handlerMovieCardClick}/>
         </Route>
         <Route exact path="/dev-film">
-          <MovieDetails />
+          <MovieDetails film={film}/>
         </Route>
       </Switch>
     </BrowserRouter>
