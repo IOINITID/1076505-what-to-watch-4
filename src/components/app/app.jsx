@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import MovieDetails from '../movie-details/movie-details.jsx';
+import {PageNames} from '../../const.js';
 
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      page: `main`
+      page: PageNames.MAIN
     };
 
     this.handleMovieCardClick = this.handleMovieCardClick.bind(this);
@@ -19,7 +20,7 @@ export default class App extends PureComponent {
     evt.preventDefault();
 
     this.setState({
-      page: `movieDetails`
+      page: PageNames.MOVIE_DETAILS
     });
   }
 
@@ -28,11 +29,11 @@ export default class App extends PureComponent {
     const {page} = this.state;
 
     switch (page) {
-      case `main`:
+      case PageNames.MAIN:
         return (
           <Main movieData={movieData} films={films} onMovieCardClick={this.handleMovieCardClick}/>
         );
-      case `movieDetails`:
+      case PageNames.MOVIE_DETAILS:
         return (
           <MovieDetails film={film}/>
         );

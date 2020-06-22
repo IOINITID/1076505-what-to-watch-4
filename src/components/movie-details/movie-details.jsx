@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {RatingLevel} from '../../const.js';
 
 const MovieDetails = (props) => {
   const {film} = props;
@@ -8,15 +9,15 @@ const MovieDetails = (props) => {
   const getRatingLevel = (count) => {
     switch (true) {
       case count < 3:
-        return `Bad`;
+        return RatingLevel.BAD;
       case count < 5:
-        return `Normal`;
+        return RatingLevel.NORMAL;
       case count < 8:
-        return `Good`;
+        return RatingLevel.GOOD;
       case count < 10:
-        return `Very good`;
+        return RatingLevel.VERY_GOOD;
       default:
-        return `Awesome`;
+        return RatingLevel.AWESOME;
     }
   };
 
