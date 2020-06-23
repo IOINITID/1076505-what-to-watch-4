@@ -11,7 +11,7 @@ const MovieCard = (props) => {
       onMouseOver={() => {
         onMovieCardHover(film);
       }}>
-      <div className="small-movie-card__image">
+      <div className="small-movie-card__image" onClick={onMovieCardClick}>
         <img src={image} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title" onClick={onMovieCardClick}>

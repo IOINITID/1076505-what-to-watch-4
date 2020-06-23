@@ -49,19 +49,24 @@ Enzyme.configure({
 });
 
 describe(`Main`, () => {
-  it(`Click on header of movie card should be done`, () => {
-    const handlerMovieCardClick = jest.fn();
+  it(`Click on header or image of movie card should be done`, () => {
+    const handleMovieCardClick = jest.fn();
 
     const main = mount(
-        <Main movieData={movieData} films={films} onMovieCardClick={handlerMovieCardClick}/>
+        <Main movieData={movieData} films={films} onMovieCardClick={handleMovieCardClick}/>
     );
 
     const movieCardLinks = main.find(`a.small-movie-card__link`);
+    const movieCardImages = main.find(`div.small-movie-card__image`);
 
     movieCardLinks.forEach((link) => {
-      link.simulate(`click`);
+      link.simulate(`click`, {preventDefault() {}});
     });
 
-    expect(handlerMovieCardClick).toHaveBeenCalledTimes(movieCardLinks.length);
+    movieCardImages.forEach((image) => {
+      image.simulate(`click`);
+    });
+
+    expect(handleMovieCardClick).toHaveBeenCalledTimes(movieCardLinks.length + movieCardImages.length);
   });
 });
