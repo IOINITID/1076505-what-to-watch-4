@@ -1,32 +1,56 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import VideoPlayer from '../video-player/video-player.jsx';
 
-const MovieCard = (props) => {
-  const {film, onMovieCardClick, onMovieCardHover} = props;
-  const {title, image} = film;
+export default class MovieCard extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return (
-    <article
-      className="small-movie-card catalog__movies-card"
-      onMouseOver={() => {
-        onMovieCardHover(film);
-      }}>
-      <div className="small-movie-card__image" onClick={onMovieCardClick}>
-        <img src={image} alt={title} width="280" height="175" />
-      </div>
-      <h3 className="small-movie-card__title" onClick={onMovieCardClick}>
-        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
-      </h3>
-    </article>
-  );
-};
+    this.state = {
+      isVideoPlaying: false
+    };
+  }
 
-export default MovieCard;
+  render() {
+    const {film, onMovieCardClick, onMovieCardHover} = this.props;
+    const {title, image} = film;
+    const {isVideoPlaying} = this.state;
+
+    return (
+      <article
+        className="small-movie-card catalog__movies-card"
+        onMouseOver={() => {
+          onMovieCardHover(film);
+          this.setState({
+            isVideoPlaying: true
+          });
+        }}
+        onMouseOut={() => {
+          this.setState({
+            isVideoPlaying: false
+          });
+        }}
+      >
+        <div className="small-movie-card__image" onClick={onMovieCardClick}>
+          <VideoPlayer
+            film={film}
+            isPlaying={isVideoPlaying}
+          />
+          <img src={image} alt={title} width="280" height="175" />
+        </div>
+        <h3 className="small-movie-card__title" onClick={onMovieCardClick}>
+          <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+        </h3>
+      </article>
+    );
+  }
+}
 
 MovieCard.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired,
+    videoSource: PropTypes.string.isRequired
   }).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
   onMovieCardHover: PropTypes.func.isRequired
